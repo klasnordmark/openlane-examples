@@ -1,0 +1,23 @@
+CAPI=2:
+
+name : ::genericfir:1.0.0
+
+filesets:
+    rtl:
+        files:
+            - rtl/genericfir.v
+        file_type : verilogSource
+    
+    openlane:
+        files:
+            - data/params.tcl
+        file_type : tclSource
+
+targets:
+    default:
+        filesets : [rtl]
+
+    sky130:
+        default_tool : openlane
+        filesets : [rtl, openlane]
+        toplevel: genericfir
