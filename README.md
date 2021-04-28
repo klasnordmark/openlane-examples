@@ -5,5 +5,5 @@ This repository contains example designs from the Openlane repository adapted fo
 Openlane is typically run in a docker container, which is also what we have tested for. A python script is provided to work with the Fusesoc capabilities for containerized tools. Use the following command to build a core, provided you have environment variables set for the tools and PDK and made Fusesoc aware of the core locations:
 
 ```
-EDALIZE_LAUNCHER=$(realpath runme.py) fusesoc run --target=sky130 [insert core name here]
+EDALIZE_LAUNCHER=$(realpath openlane_runner.py) fusesoc run --target=sky130 [insert core name here]
 ```
