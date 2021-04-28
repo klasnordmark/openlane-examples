@@ -1,0 +1,32 @@
+CAPI=2:
+
+name : ::aes_cipher:1.0.0
+
+filesets:
+    rtl:
+        files:
+            - rtl/aes_cipher.v
+            - rtl/aes_key_expand_128.v
+            - rtl/aes_rcon.v
+            - rtl/aes_sbox.v
+            - rtl/timescale.v
+        file_type : verilogSource
+    
+    openlane:
+        files:
+            - data/params.tcl
+            - data/sky130A_sky130_fd_sc_hd_config.tcl
+            - data/sky130A_sky130_fd_sc_hdll_config.tcl
+            - data/sky130A_sky130_fd_sc_hs_config.tcl
+            - data/sky130A_sky130_fd_sc_ls_config.tcl
+            - data/sky130A_sky130_fd_sc_ms_config.tcl
+        file_type : tclSource
+
+targets:
+    default:
+        filesets : [rtl]
+
+    sky130:
+        default_tool : openlane
+        filesets : [rtl, openlane]
+        toplevel : aes_cipher
