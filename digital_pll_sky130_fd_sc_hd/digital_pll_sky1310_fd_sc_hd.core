@@ -1,0 +1,25 @@
+CAPI=2:
+
+name : ::digital_pll_sky130_fd_sc_hd:1.0.0
+
+filesets:
+    rtl:
+        files:
+            - rtl/digital_pll_controller.v
+            - rtl/ring_osc2x13.v
+            - rtl/digital_pll.v
+        file_type : verilogSource
+    
+    openlane:
+        files:
+            - data/params.tcl
+        file_type : tclSource
+
+targets:
+    default:
+        filesets : [rtl]
+
+    sky130:
+        default_tool : openlane
+        filesets : [rtl, openlane]
+        toplevel: digital_pll
