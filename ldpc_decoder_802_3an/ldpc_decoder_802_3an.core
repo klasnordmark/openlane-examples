@@ -1,0 +1,23 @@
+CAPI=2:
+
+name : ::ldpc_decoder_802_3an:1.0.0
+
+filesets:
+    rtl:
+        files:
+            - rtl/ldpc_decoder_802_3an.v
+        file_type : verilogSource
+    
+    openlane:
+        files:
+            - data/params.tcl
+        file_type : tclSource
+
+targets:
+    default:
+        filesets : [rtl]
+
+    sky130:
+        default_tool : openlane
+        filesets : [rtl, openlane]
+        toplevel: ldpc_decoder_802_3an
