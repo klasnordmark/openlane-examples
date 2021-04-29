@@ -1,0 +1,28 @@
+CAPI=2:
+
+name : ::sha512:1.0.0
+
+filesets:
+    rtl:
+        files:
+            - rtl/sha512.v
+        file_type : verilogSource
+    
+    openlane:
+        files:
+            - data/params.tcl
+            - data/sky130A_sky130_fd_sc_hd_config.tcl
+            - data/sky130A_sky130_fd_sc_hdll_config.tcl
+            - data/sky130A_sky130_fd_sc_hs_config.tcl
+            - data/sky130A_sky130_fd_sc_ls_config.tcl
+            - data/sky130A_sky130_fd_sc_ms_config.tcl
+        file_type : tclSource
+
+targets:
+    default:
+        filesets : [rtl]
+
+    sky130:
+        default_tool : openlane
+        filesets : [rtl, openlane]
+        toplevel: sha512
