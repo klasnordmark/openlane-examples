@@ -22,4 +22,4 @@ if 'flow.tcl' in sys.argv[1]:
               "-u", f"{os.getuid()}:{os.getgid()}",
               "-w", f"/project/{work}",
               image]
-    subprocess.call(prefix+sys.argv[1:])
+    sys.exit(subprocess.call(prefix+sys.argv[1:]))
