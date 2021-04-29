@@ -1,0 +1,29 @@
+CAPI=2:
+
+name : ::s44:1.0.0
+
+filesets:
+    rtl:
+        files:
+            - rtl/lut.v
+            - rtl/lut_s44.v
+        file_type : verilogSource
+    
+    openlane:
+        files:
+            - data/params.tcl
+            - data/sky130A_sky130_fd_sc_hdll_config.tcl
+            - data/sky130A_sky130_fd_sc_hs_config.tcl
+            - data/sky130A_sky130_fd_sc_ls_config.tcl
+            - data/sky130A_sky130_fd_sc_ms_config.tcl
+            - data/pdn.tcl : {file_type : pdn}
+        file_type : tclSource
+
+targets:
+    default:
+        filesets : [rtl]
+
+    sky130:
+        default_tool : openlane
+        filesets : [rtl, openlane]
+        toplevel: lut_s44
