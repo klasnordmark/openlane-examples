@@ -1,0 +1,34 @@
+CAPI=2:
+
+name : ::usb_cdc_core:1.0.0
+
+filesets:
+    rtl:
+        files:
+            - rtl/usb_desc_rom.v
+            - rtl/usbf_crc16.v
+            - rtl/usbf_defs.v
+            - rtl/usbf_device_core.v
+            - rtl/usbf_sie_rx.v
+            - rtl/usbf_sie_tx.v
+            - rtl/usb_cdc_core.v
+        file_type : verilogSource
+    
+    openlane:
+        files:
+            - data/params.tcl
+            - data/sky130A_sky130_fd_sc_hd_config.tcl
+            - data/sky130A_sky130_fd_sc_hdll_config.tcl
+            - data/sky130A_sky130_fd_sc_hs_config.tcl
+            - data/sky130A_sky130_fd_sc_ls_config.tcl
+            - data/sky130A_sky130_fd_sc_ms_config.tcl
+        file_type : tclSource
+
+targets:
+    default:
+        filesets : [rtl]
+
+    sky130:
+        default_tool : openlane
+        filesets : [rtl, openlane]
+        toplevel: usb_cdc_core
