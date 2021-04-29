@@ -1,11 +1,11 @@
 CAPI=2:
 
-name : ::inverter:1.0.0
+name : ::picorv32a:1.0.0
 
 filesets:
     rtl:
         files:
-            - rtl/inverter.v
+            - rtl/picorv32a.v
         file_type : verilogSource
     
     openlane:
@@ -25,4 +25,4 @@ targets:
     sky130:
         default_tool : openlane
         filesets : [rtl, openlane]
-        toplevel: inverter
+        toplevel: picorv32a
