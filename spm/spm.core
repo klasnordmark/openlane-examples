@@ -16,7 +16,6 @@ filesets:
             - data/sky130A_sky130_fd_sc_hs_config.tcl
             - data/sky130A_sky130_fd_sc_ls_config.tcl
             - data/sky130A_sky130_fd_sc_ms_config.tcl
-            - data/pin_order.cfg : {file_type : pinOrder}
         file_type : tclSource
 
 targets:
