@@ -1,5 +1,10 @@
 name: build-openlane-sky130
-on: [push]
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'APU/**'
 jobs:
   build-openlane:
     runs-on: ubuntu-latest
@@ -20,5 +25,5 @@ jobs:
       - run: pip3 install --user -e "git+https://github.com/asicbitch/edalize.git@openlane#egg=edalize"
       - run: pip3 install fusesoc
       - run: docker pull efabless/openlane:v0.12
-      - run: fusesoc library add PPU $GITHUB_WORKSPACE/openlane-examples/PPU
-      - run: fusesoc run --target=sky130 PPU
+      - run: fusesoc library add APU $GITHUB_WORKSPACE/openlane-examples/APU
+      - run: fusesoc run --target=sky130 APU
