@@ -1,5 +1,5 @@
 
-name: build-openlane-sky130
+name: build-bm64-openlane-sky130
 on:
   push:
     branches:
