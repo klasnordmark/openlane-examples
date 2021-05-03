@@ -1,0 +1,30 @@
+name: build-usb-openlane-sky130
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'usb/**'
+jobs:
+  build-openlane:
+    runs-on: ubuntu-latest
+    env:
+      OPENLANE_ROOT: not_really_used
+    steps:
+      - name: Checkout examples
+        uses: actions/checkout@v2
+        with:
+          path: openlane-examples
+      - name: Checkout pdk
+        uses: actions/checkout@v2
+        with:
+          repository: olofk/pdklite
+          path: pdklite
+      - run: echo "PDK_ROOT=$GITHUB_WORKSPACE/pdklite" >> $GITHUB_ENV
+      - run: echo "EDALIZE_LAUNCHER=${GITHUB_WORKSPACE}/openlane-examples/openlane_runner.py" >> $GITHUB_ENV
+      - run: pip3 install --user -e "git+https://github.com/asicbitch/edalize.git@openlane#egg=edalize"
+      - run: pip3 install fusesoc
+      - run: docker pull efabless/openlane:v0.12
+      - run: fusesoc library add usb $GITHUB_WORKSPACE/openlane-examples/usb
+      - run: fusesoc run --target=sky130 usb
+      

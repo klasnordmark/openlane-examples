@@ -1,0 +1,30 @@
+name: build-digital_pll_sky130_fd_sc_hd-openlane-sky130
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - 'digital_pll_sky130_fd_sc_hd/**'
+jobs:
+  build-openlane:
+    runs-on: ubuntu-latest
+    env:
+      OPENLANE_ROOT: not_really_used
+    steps:
+      - name: Checkout examples
+        uses: actions/checkout@v2
+        with:
+          path: openlane-examples
+      - name: Checkout pdk
+        uses: actions/checkout@v2
+        with:
+          repository: olofk/pdklite
+          path: pdklite
+      - run: echo "PDK_ROOT=$GITHUB_WORKSPACE/pdklite" >> $GITHUB_ENV
+      - run: echo "EDALIZE_LAUNCHER=${GITHUB_WORKSPACE}/openlane-examples/openlane_runner.py" >> $GITHUB_ENV
+      - run: pip3 install --user -e "git+https://github.com/asicbitch/edalize.git@openlane#egg=edalize"
+      - run: pip3 install fusesoc
+      - run: docker pull efabless/openlane:v0.12
+      - run: fusesoc library add digital_pll_sky130_fd_sc_hd $GITHUB_WORKSPACE/openlane-examples/digital_pll_sky130_fd_sc_hd
+      - run: fusesoc run --target=sky130 digital_pll_sky130_fd_sc_hd!
+      
