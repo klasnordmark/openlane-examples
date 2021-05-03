@@ -1,4 +1,4 @@
-name: build-openlane-sky130
+name: build-apu-openlane-sky130
 on:
   push:
     branches:
