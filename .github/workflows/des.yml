@@ -26,5 +26,5 @@ jobs:
       - run: pip3 install fusesoc
       - run: docker pull efabless/openlane:v0.12
       - run: fusesoc library add des $GITHUB_WORKSPACE/openlane-examples/des
-      - run: fusesoc run --target=sky130 des
+      - run: fusesoc run --target=sky130_des des
       
