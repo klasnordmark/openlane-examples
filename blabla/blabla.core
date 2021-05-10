@@ -10,13 +10,13 @@ filesets:
     
     openlane:
         files:
-            - data/params.tcl
-            - data/sky130A_sky130_fd_sc_hd_config.tcl
-            - data/sky130A_sky130_fd_sc_hdll_config.tcl
-            - data/sky130A_sky130_fd_sc_hs_config.tcl
-            - data/sky130A_sky130_fd_sc_ls_config.tcl
-            - data/sky130A_sky130_fd_sc_ms_config.tcl
-        file_type : tclSource
+            - data/params.tcl : {file_type : tclSource}
+            - data/sky130A_sky130_fd_sc_hd_config.tcl : {copyto : .}
+            - data/sky130A_sky130_fd_sc_hdll_config.tcl : {copyto : .}
+            - data/sky130A_sky130_fd_sc_hs_config.tcl : {copyto : .}
+            - data/sky130A_sky130_fd_sc_ls_config.tcl : {copyto : .}
+            - data/sky130A_sky130_fd_sc_ms_config.tcl : {copyto : .}
+        file_type : user
 
 targets:
     default:
