@@ -3,3 +3,4 @@ set ::env(CLOCK_PORT) "config_clk"
 set ::env(CLOCK_NET) $::env(CLOCK_PORT)
 set ::env(FP_CORE_UTIL) 5
 set ::env(PL_TARGET_DENSITY) 0.5
+set ::env(PDN_CFG) $::env(DESIGN_DIR)/pdn.tcl

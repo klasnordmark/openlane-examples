@@ -11,13 +11,9 @@ filesets:
     
     openlane:
         files:
-            - data/params.tcl
-            - data/sky130A_sky130_fd_sc_hdll_config.tcl
-            - data/sky130A_sky130_fd_sc_hs_config.tcl
-            - data/sky130A_sky130_fd_sc_ls_config.tcl
-            - data/sky130A_sky130_fd_sc_ms_config.tcl
-            - data/pdn.tcl : {file_type : pdn}
-        file_type : tclSource
+            - data/params.tcl : {file_type : tclSource}
+            - data/pdn.tcl : {copyto : .}
+        file_type : user
 
 targets:
     default:
