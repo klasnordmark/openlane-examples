@@ -5,11 +5,10 @@ on:
       - main
     paths:
       - 'genericfir/**'
+      - '.github/workflows/genericfir.yml'
 jobs:
   build-openlane:
     runs-on: ubuntu-latest
-    env:
-      OPENLANE_ROOT: not_really_used
     steps:
       - name: Checkout examples
         uses: actions/checkout@v2
@@ -17,14 +16,9 @@ jobs:
           path: openlane-examples
       - name: Checkout pdk
         uses: actions/checkout@v2
+      - name: Build with Openlane
+        uses: librecores/ci-fusesoc-action@v1
         with:
-          repository: olofk/pdklite
-          path: pdklite
-      - run: echo "PDK_ROOT=$GITHUB_WORKSPACE/pdklite" >> $GITHUB_ENV
-      - run: echo "EDALIZE_LAUNCHER=${GITHUB_WORKSPACE}/openlane-examples/openlane_runner.py" >> $GITHUB_ENV
-      - run: pip3 install --user -e "git+https://github.com/olofk/edalize.git@master#egg=edalize"
-      - run: pip3 install fusesoc
-      - run: docker pull efabless/openlane:v0.12
-      - run: fusesoc library add genericfir $GITHUB_WORKSPACE/openlane-examples/genericfir
-      - run: fusesoc run --target=sky130 genericfir
-      
+          core: genericfir
+          target: sky130
+          tool: openlane
